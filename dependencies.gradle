@@ -1,0 +1,95 @@
+ext.versions = [
+    'agp'               : '3.5.0',
+	'assertJCore'       : '3.8.0',
+	'assertJAndroid'    : '1.1.1',
+    'compileSdk'        : 29,
+    'dagger'            : '2.16',
+    'javaXAnnotation'   : '1.0',
+    'kotlin'            : '1.3.41',
+    'lifecycle'         : '2.1.0',
+    'minSdk'            : 26,
+    'mockitoKotlin'      : '2.0.0',
+    'moshi'             : '1.8.0',
+	'navigation'		: '2.1.0',
+    'okhttp'            : '3.12.0',
+    'playServices'      : '17.0.0',
+    'retrofit'          : '2.5.0',
+    'robolectric'       : '4.2',
+    'rxAndroid2'        : '2.1.0',
+    'rxJava2'           : '2.2.2',
+	'rxKotlin'          : '2.3.0',
+	'targetSdk'         : 28,
+	'timber'			: '4.7.1'
+]
+
+ext.libs = [
+	'androidMaterial' 	 : "com.google.android.material:material:1.0.0",
+	'androidx'	: [
+		appCompat		 : "androidx.appcompat:appcompat:1.0.2",
+		constraintLayout : "androidx.constraintlayout:constraintlayout:1.1.3",
+	    core 		: [
+	        	ktx      : "androidx.core:core-ktx:1.0.2",
+				testing  : "androidx.arch.core:core-testing:2.0.0"
+	    ],
+		lifecycle  	: [
+			compiler	 : "androidx.lifecycle:lifecycle-compiler:$versions.lifecycle",
+			ext			 : "androidx.lifecycle:lifecycle-extensions:$versions.lifecycle",
+			rx	 		 : "androidx.lifecycle:lifecycle-reactivestreams:$versions.lifecycle",
+			rxKtx	 	 : "androidx.lifecycle:lifecycle-reactivestreams-ktx:$versions.lifecycle"
+		],
+		navigation	: [
+			fragmentKtx   : "androidx.navigation:navigation-fragment-ktx:$versions.navigation",
+			uiKtx	 	  : "androidx.navigation:navigation-ui-ktx:$versions.navigation"
+		]
+	],
+	'dagger'	: [
+	    'runtime'			: "com.google.dagger:dagger:$versions.dagger",
+	    'compiler'			: "com.google.dagger:dagger-compiler:$versions.dagger",
+	    'android'			: "com.google.dagger:dagger-android:$versions.dagger",
+	    'androidSupport'	: "com.google.dagger:dagger-android-support:$versions.dagger",
+	    'androidProcessor'	: "com.google.dagger:dagger-android-processor:$versions.dagger"
+	],
+	'javax'		: [
+	    'annotation'		: "javax.annotations:jsr250-api:$versions.javaXAnnotation",
+		'inject'			: "javax.inject:javax.inject:1"
+	],
+	'jsr305'				: "com.google.code.findbugs:jsr305:3.0.2",
+	'kotlin'	: [
+		'stdlib' : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin",
+		'reflect' : "org.jetbrains.kotlin:kotlin-reflect:$versions.kotlin"
+	],
+    'moshiAdapter'              : "com.squareup.moshi:moshi:$versions.moshi",
+    'moshiConverterFactory'     : "com.squareup.retrofit2:converter-moshi:$versions.moshi",
+    'moshi'                     : "com.squareup.moshi:moshi-adapters:$versions.moshi",
+    'okhttp'                    : "com.squareup.okhttp3:okhttp:$versions.okhttp",
+	'okhttpLogging' 			: "com.squareup.okhttp3:logging-interceptor:$versions.okhttp",
+	'playServices'				: "com.google.android.gms:play-services-auth:$versions.playServices",
+	'retrofit'                  : "com.squareup.retrofit2:retrofit:$versions.retrofit",
+	'retrofitConverter'         : "com.squareup.retrofit2:converter-moshi:$versions.retrofit",
+	'retrofitRxAdapter' 		: "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit",
+	'rxAndroid2'				: "io.reactivex.rxjava2:rxandroid:$versions.rxAndroid2",
+	'rxJava2'					: "io.reactivex.rxjava2:rxjava:$versions.rxJava2",
+	'rxKotlin'					: "io.reactivex.rxjava2:rxkotlin:$versions.rxKotlin",
+	'timber'					: "com.jakewharton.timber:timber:$versions.timber"
+]
+
+ext.projectLibs = [
+    'doordashapi'		: project(":doordashapi"),
+    'data'				: project(":data"),
+    'domain'			: project(":domain")
+]
+
+ext.testLibs = [
+	'assertJ'		: 'org.assertj:assertj-core:3.14.0',
+	'junit'			: 'junit:junit:4.12',
+	'mockitoKotlin'  : "com.nhaarman.mockitokotlin2:mockito-kotlin:$versions.mockitoKotlin"
+]
+
+ext.androidTestLibs = [
+	'androidTestRunner' : 'androidx.test:runner:1.1.1',
+	'espressoCore'      : 'androidx.test.espresso:espresso-core:3.1.1'
+]
+
+ext.kaptLibs = [
+	'moshiCodegen'      : 'com.squareup.moshi:moshi-kotlin-codegen:1.6.0'
+]

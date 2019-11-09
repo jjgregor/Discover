@@ -1,0 +1,49 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+android {
+    defaultConfig {
+        compileSdkVersion versions.compileSdk
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "BASE_URL", '"https://api.doordash.com"')
+        }
+        debug {
+            minifyEnabled false
+            buildConfigField("String", "BASE_URL", '"https://api.doordash.com"')
+        }
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation projectLibs.domain
+
+    implementation libs.androidx.appCompat
+    implementation libs.androidx.core.ktx
+    implementation libs.dagger.android
+    implementation libs.dagger.androidSupport
+    implementation libs.dagger.runtime
+    implementation libs.moshi
+    implementation libs.okhttpLogging
+    implementation libs.retrofit
+    implementation libs.retrofitConverter
+    implementation libs.retrofitRxAdapter
+    implementation libs.rxAndroid2
+}

@@ -1,0 +1,5 @@
+include ':app'
+include ':doordashapi'
+include ':domain'
+include ':data'
+rootProject.name = 'Discover'
