@@ -7,6 +7,5 @@ data class ApiRestaurant(
     @Json(name = "name") val name: String? = null,
     @Json(name = "description") val description: String? = null,
     @Json(name = "cover_img_url") val imageUrl: String? = null,
-    @Json(name = "status") val status: String? = null,
-    @Json(name = "delivery_fee") val deliveryFee: String? = null
+    @Json(name = "status") val status: String? = null
 )

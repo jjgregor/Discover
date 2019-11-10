@@ -11,7 +11,6 @@ private const val NAME = "name"
 private const val DESCRIPTION = "description"
 private const val IMAGE_URL = "image_url"
 private const val STATUS = "status"
-private const val DELIVERY_FEE = "delivery_fee"
 
 class RestaurantAdapterTest {
 
@@ -25,8 +24,7 @@ class RestaurantAdapterTest {
             name = NAME,
             description = DESCRIPTION,
             imageUrl = IMAGE_URL,
-            status = STATUS,
-            deliveryFee = DELIVERY_FEE
+            status = STATUS
         )
 
         // When
@@ -38,8 +36,7 @@ class RestaurantAdapterTest {
             name = NAME,
             description = DESCRIPTION,
             imageUrl = IMAGE_URL,
-            status = STATUS,
-            deliveryFee = DELIVERY_FEE
+            status = STATUS
         )
         assertThat(expected).isEqualToComparingFieldByField(result)
     }
@@ -51,8 +48,7 @@ class RestaurantAdapterTest {
             name = NAME,
             description = DESCRIPTION,
             imageUrl = IMAGE_URL,
-            status = STATUS,
-            deliveryFee = DELIVERY_FEE
+            status = STATUS
         )
 
         // Then
@@ -68,8 +64,7 @@ class RestaurantAdapterTest {
             id = ID,
             description = DESCRIPTION,
             imageUrl = IMAGE_URL,
-            status = STATUS,
-            deliveryFee = DELIVERY_FEE
+            status = STATUS
         )
 
         // Then
@@ -85,8 +80,7 @@ class RestaurantAdapterTest {
             id = ID,
             name = NAME,
             imageUrl = IMAGE_URL,
-            status = STATUS,
-            deliveryFee = DELIVERY_FEE
+            status = STATUS
         )
 
         // Then
@@ -102,14 +96,22 @@ class RestaurantAdapterTest {
             id = ID,
             name = NAME,
             description = DESCRIPTION,
-            status = STATUS,
-            deliveryFee = DELIVERY_FEE
+            status = STATUS
         )
 
+        // When
+        val result = adapter(apiRestaurant)
+
         // Then
-        assertThatExceptionOfType(IllegalStateException::class.java).isThrownBy {
-            adapter(apiRestaurant)
-        }.withMessage("imageUrl must not be null")
+        val expected = Restaurant(
+            id = ID,
+            name = NAME,
+            description = DESCRIPTION,
+            imageUrl = "",
+            status = STATUS
+        )
+        assertThat(expected).isEqualToComparingFieldByField(result)
+
     }
 
     @Test
@@ -119,30 +121,12 @@ class RestaurantAdapterTest {
             id = ID,
             name = NAME,
             description = DESCRIPTION,
-            imageUrl = IMAGE_URL,
-            deliveryFee = DELIVERY_FEE
+            imageUrl = IMAGE_URL
         )
 
         // Then
         assertThatExceptionOfType(IllegalStateException::class.java).isThrownBy {
             adapter(apiRestaurant)
         }.withMessage("status must not be null")
-    }
-
-    @Test
-    fun givenApiRestaurant_isMissingDeliveryFee_shouldReturnRestaurant() {
-        // Given
-        val apiRestaurant = ApiRestaurant(
-            id = ID,
-            name = NAME,
-            description = DESCRIPTION,
-            imageUrl = IMAGE_URL,
-            status = STATUS
-        )
-
-        // Then
-        assertThatExceptionOfType(IllegalStateException::class.java).isThrownBy {
-            adapter(apiRestaurant)
-        }.withMessage("deliveryFee must not be null")
     }
 }
