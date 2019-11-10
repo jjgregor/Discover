@@ -8,13 +8,14 @@ import org.junit.Test
 
 private const val ID = 100L
 private const val NAME = "name"
+private const val DESCRIPTION = "description"
 private const val IMAGE_URL = "image_url"
 private const val STATUS = "status"
 private const val DELIVERY_FEE = "delivery_fee"
 
 class RestaurantAdapterTest {
 
-    private val adpater = RestaurantAdapter()
+    private val adapter = RestaurantAdapter()
 
     @Test
     fun givenApiRestaurant_shouldReturnRestaurant() {
@@ -22,18 +23,20 @@ class RestaurantAdapterTest {
         val apiRestaurant = ApiRestaurant(
             id = ID,
             name = NAME,
+            description = DESCRIPTION,
             imageUrl = IMAGE_URL,
             status = STATUS,
             deliveryFee = DELIVERY_FEE
         )
 
         // When
-        val result = adpater(apiRestaurant)
+        val result = adapter(apiRestaurant)
 
         // Then
         val expected = Restaurant(
             id = ID,
             name = NAME,
+            description = DESCRIPTION,
             imageUrl = IMAGE_URL,
             status = STATUS,
             deliveryFee = DELIVERY_FEE
@@ -46,6 +49,7 @@ class RestaurantAdapterTest {
         // Given
         val apiRestaurant = ApiRestaurant(
             name = NAME,
+            description = DESCRIPTION,
             imageUrl = IMAGE_URL,
             status = STATUS,
             deliveryFee = DELIVERY_FEE
@@ -53,7 +57,7 @@ class RestaurantAdapterTest {
 
         // Then
         assertThatExceptionOfType(IllegalStateException::class.java).isThrownBy {
-            adpater(apiRestaurant)
+            adapter(apiRestaurant)
         }.withMessage("ID must not be null")
     }
 
@@ -62,6 +66,7 @@ class RestaurantAdapterTest {
         // Given
         val apiRestaurant = ApiRestaurant(
             id = ID,
+            description = DESCRIPTION,
             imageUrl = IMAGE_URL,
             status = STATUS,
             deliveryFee = DELIVERY_FEE
@@ -69,8 +74,25 @@ class RestaurantAdapterTest {
 
         // Then
         assertThatExceptionOfType(IllegalStateException::class.java).isThrownBy {
-            adpater(apiRestaurant)
+            adapter(apiRestaurant)
         }.withMessage("Name must not be null")
+    }
+
+    @Test
+    fun givenApiRestaurant_isMissingDescription_shouldReturnRestaurant() {
+        // Given
+        val apiRestaurant = ApiRestaurant(
+            id = ID,
+            name = NAME,
+            imageUrl = IMAGE_URL,
+            status = STATUS,
+            deliveryFee = DELIVERY_FEE
+        )
+
+        // Then
+        assertThatExceptionOfType(IllegalStateException::class.java).isThrownBy {
+            adapter(apiRestaurant)
+        }.withMessage("Description must not be null")
     }
 
     @Test
@@ -79,13 +101,14 @@ class RestaurantAdapterTest {
         val apiRestaurant = ApiRestaurant(
             id = ID,
             name = NAME,
+            description = DESCRIPTION,
             status = STATUS,
             deliveryFee = DELIVERY_FEE
         )
 
         // Then
         assertThatExceptionOfType(IllegalStateException::class.java).isThrownBy {
-            adpater(apiRestaurant)
+            adapter(apiRestaurant)
         }.withMessage("imageUrl must not be null")
     }
 
@@ -95,13 +118,14 @@ class RestaurantAdapterTest {
         val apiRestaurant = ApiRestaurant(
             id = ID,
             name = NAME,
+            description = DESCRIPTION,
             imageUrl = IMAGE_URL,
             deliveryFee = DELIVERY_FEE
         )
 
         // Then
         assertThatExceptionOfType(IllegalStateException::class.java).isThrownBy {
-            adpater(apiRestaurant)
+            adapter(apiRestaurant)
         }.withMessage("status must not be null")
     }
 
@@ -111,13 +135,14 @@ class RestaurantAdapterTest {
         val apiRestaurant = ApiRestaurant(
             id = ID,
             name = NAME,
+            description = DESCRIPTION,
             imageUrl = IMAGE_URL,
             status = STATUS
         )
 
         // Then
         assertThatExceptionOfType(IllegalStateException::class.java).isThrownBy {
-            adpater(apiRestaurant)
+            adapter(apiRestaurant)
         }.withMessage("deliveryFee must not be null")
     }
 }

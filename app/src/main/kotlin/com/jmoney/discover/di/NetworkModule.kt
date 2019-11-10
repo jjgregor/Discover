@@ -38,12 +38,6 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideGiphyService(restAdapter: Retrofit) : DoorDashService {
-        return restAdapter.create(DoorDashService::class.java)
-    }
-
-    @Provides
-    @Singleton
     fun provideRetrofit(
         okHttpClient: OkHttpClient,
         moshi: Moshi

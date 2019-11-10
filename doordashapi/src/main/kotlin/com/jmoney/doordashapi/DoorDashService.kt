@@ -11,7 +11,9 @@ interface DoorDashService {
     @GET("/v2/restaurant/")
     fun getRestaurantFromCoordinates(
         @Query("lat") latitude: Double,
-        @Query("lng") longitude: Double
+        @Query("lng") longitude: Double,
+        @Query("limit") limit: Int,
+        @Query("offset") offset: Int
     ): Single<List<ApiRestaurant>>
 
     @GET("/v2/restaurant/{restaurant_id}/")

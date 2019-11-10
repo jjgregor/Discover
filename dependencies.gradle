@@ -4,6 +4,7 @@ ext.versions = [
 	'assertJAndroid'    : '1.1.1',
     'compileSdk'        : 29,
     'dagger'            : '2.16',
+    'glide'             : '4.9.0',
     'javaXAnnotation'   : '1.0',
     'kotlin'            : '1.3.41',
     'lifecycle'         : '2.1.0',
@@ -49,6 +50,7 @@ ext.libs = [
 	    'androidSupport'	: "com.google.dagger:dagger-android-support:$versions.dagger",
 	    'androidProcessor'	: "com.google.dagger:dagger-android-processor:$versions.dagger"
 	],
+	'glide' 				: "com.github.bumptech.glide:glide:$versions.glide",
 	'javax'		: [
 	    'annotation'		: "javax.annotations:jsr250-api:$versions.javaXAnnotation",
 		'inject'			: "javax.inject:javax.inject:1"

@@ -1,58 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+<layout>
 
-    <ImageView
-        android:id="@+id/restaurant_item_image"
-        android:layout_width="@dimen/restaurant_image_width"
-        android:layout_height="@dimen/restaurant_image_height"
-        android:layout_margin="@dimen/restaurant_item_margin"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:scaleType="fitCenter"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/ic_android_black_24dp" />
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/restaurant_item_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/restaurant_item_margin"
-        android:textSize="@dimen/title_text_size"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/restaurant_item_subtitle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/restaurant_item_image"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed"
-        tools:text="Restaurant Title" />
+        <ImageView
+            android:id="@+id/restaurant_item_image"
+            android:layout_width="@dimen/restaurant_image_width"
+            android:layout_height="@dimen/restaurant_image_height"
+            android:layout_margin="@dimen/restaurant_item_margin"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_android_black_24dp" />
 
-    <TextView
-        android:id="@+id/restaurant_item_subtitle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/restaurant_item_margin"
-        android:textColor="@color/subtitle_text"
-        android:textSize="@dimen/subtitle_text_size"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/restaurant_item_status"
-        app:layout_constraintStart_toEndOf="@+id/restaurant_item_image"
-        app:layout_constraintTop_toBottomOf="@+id/restaurant_item_title"
-        tools:text="Restaurant Subtitle" />
+        <TextView
+            android:id="@+id/restaurant_item_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/restaurant_item_margin"
+            android:textSize="@dimen/title_text_size"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/restaurant_item_subtitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/restaurant_item_image"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Restaurant Title" />
 
-    <TextView
-        android:id="@+id/restaurant_item_status"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/restaurant_item_margin"
-        android:textColor="@color/status_text"
-        android:textSize="@dimen/subtitle_text_size"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/restaurant_item_title"
-        tools:text="42 mins" />
+        <TextView
+            android:id="@+id/restaurant_item_subtitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/restaurant_item_margin"
+            android:textColor="@color/subtitle_text"
+            android:textSize="@dimen/subtitle_text_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/restaurant_item_status"
+            app:layout_constraintStart_toEndOf="@+id/restaurant_item_image"
+            app:layout_constraintTop_toBottomOf="@+id/restaurant_item_title"
+            tools:text="Restaurant Subtitle" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/restaurant_item_status"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/restaurant_item_margin"
+            android:textColor="@color/status_text"
+            android:textSize="@dimen/subtitle_text_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/restaurant_item_title"
+            tools:text="42 mins" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

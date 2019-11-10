@@ -16,8 +16,18 @@ class RestaurantDataRepository @Inject constructor(
         return doorDashApi.getRestaurantFromId(id).map { restaurantAdapter(it) }
     }
 
-    override fun getRestaurants(latitude: Double, longitude: Double): Single<List<Restaurant>> {
-        return doorDashApi.getRestaurantFromCoordinates(latitude, longitude)
+    override fun getRestaurants(
+        latitude: Double,
+        longitude: Double,
+        limit: Int,
+        offset: Int
+    ): Single<List<Restaurant>> {
+        return doorDashApi.getRestaurantFromCoordinates(
+            latitude = latitude,
+            longitude = longitude,
+            limit = limit,
+            offset = offset
+        )
             .map { restaurants -> restaurants.map { restaurantAdapter(it) } }
     }
 }

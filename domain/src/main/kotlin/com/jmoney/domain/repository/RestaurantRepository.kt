@@ -5,6 +5,12 @@ import io.reactivex.Single
 
 interface RestaurantRepository {
 
-    fun getRestaurants(latitude: Double, longitude: Double): Single<List<Restaurant>>
+    fun getRestaurants(
+        latitude: Double,
+        longitude: Double,
+        limit: Int,
+        offset: Int
+    ): Single<List<Restaurant>>
+
     fun getRestaurant(id: Long): Single<Restaurant>
 }

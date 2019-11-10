@@ -29,7 +29,6 @@ android {
     }
 }
 
-
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -46,6 +45,7 @@ dependencies {
     implementation libs.dagger.android
     implementation libs.dagger.androidSupport
     implementation libs.dagger.runtime
+    implementation libs.glide
     implementation libs.jsr305
     implementation libs.kotlin.stdlib
     implementation libs.moshi

@@ -1,12 +1,9 @@
 package com.jmoney.discover
 
 import android.app.Application
-import com.jmoney.discover.di.AppComponent
-import com.jmoney.discover.di.AppModule
-import com.jmoney.discover.di.DaggerAppComponent
-import com.jmoney.discover.di.NetworkModule
+import com.jmoney.discover.di.*
 
-class DiscoverApplication : Application() {
+class DiscoverApplication : Application(), AppComponentProvider {
 
     private lateinit var appComponent: AppComponent
 
@@ -19,5 +16,5 @@ class DiscoverApplication : Application() {
             .build()
     }
 
-    fun getPetMatchComponent() = appComponent
+    override fun provideAppComponent(): AppComponent = appComponent
 }

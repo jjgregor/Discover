@@ -9,7 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.jmoney.discover.R
+import com.jmoney.discover.adapter.RestaurantAdapter
 import com.jmoney.discover.databinding.FragmentRestaurantListBinding
 import com.jmoney.discover.datamodel.RestaurantListState
 import com.jmoney.discover.di.AppComponentProvider
@@ -23,6 +26,7 @@ class RestaurantListFragment : Fragment() {
 
     private lateinit var viewModel: RestaurantListViewModel
     private lateinit var binding: FragmentRestaurantListBinding
+    private val recyclerViewAdapter = RestaurantAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,8 +48,25 @@ class RestaurantListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val layoutManager = LinearLayoutManager(context)
 
-        binding.fragmentRestaurantListRefresh.setOnRefreshListener { viewModel.getRestaurantsFromCoordinates() }
+        with(binding) {
+            fragmentRestaurantListRefresh.setOnRefreshListener { viewModel.getRestaurantsFromCoordinates() }
+            fragmentRestaurantListRecycler.apply {
+                this.adapter = recyclerViewAdapter
+                this.layoutManager = layoutManager
+                addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                    override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                        super.onScrolled(recyclerView, dx, dy)
+                        viewModel.shouldDownLoadNextPage(
+                            totalCount = layoutManager.itemCount,
+                            firstVisible = layoutManager.findFirstVisibleItemPosition(),
+                            visibleCount = layoutManager.childCount
+                        )
+                    }
+                })
+            }
+        }
 
         viewModel.state.observe(this, Observer { updateFragment(it) })
             .apply { viewModel.getRestaurantsFromCoordinates() }
@@ -55,15 +76,19 @@ class RestaurantListFragment : Fragment() {
         when (state) {
             is RestaurantListState.Error -> setErrorState()
             is RestaurantListState.Loading -> setLoadingState()
-            is RestaurantListState.Restaurants -> updateRestaurantList()
+            is RestaurantListState.Restaurants -> updateRestaurantList(state)
         }
     }
 
-    private fun updateRestaurantList() {
+    private fun updateRestaurantList(state: RestaurantListState.Restaurants) {
         with(binding) {
-            fragmentRestaurantListRecycler.visibility = View.VISIBLE
+            if (fragmentRestaurantListRecycler.visibility != View.VISIBLE) {
+                fragmentRestaurantListRecycler.visibility = View.VISIBLE
+            }
             fragmentRestaurantListRefresh.isRefreshing = false
             fragmentRestaurantListEmpty.visibility = View.GONE
+
+            recyclerViewAdapter.restaurants.addAll(state.restaurant)
         }
     }
 
