@@ -1,5 +1,6 @@
 package com.jmoney.discover.di
 
+import com.jmoney.discover.fragment.RestaurantListFragment
 import dagger.Component
 import javax.inject.Singleton
 
@@ -12,7 +13,7 @@ import javax.inject.Singleton
     ]
 )
 interface AppComponent {
-
+    fun inject(restaurantListFragment: RestaurantListFragment)
 }
 
 interface AppComponentProvider {

@@ -1,6 +1,5 @@
 package com.jmoney.doordashapi
 
-import com.jmoney.domain.datamodel.Restaurant
 import io.reactivex.Single
 import javax.inject.Inject
 
@@ -9,10 +8,10 @@ class DoorDashApi @Inject constructor(
 ) : DoorDashService {
 
     override fun getRestaurantFromCoordinates(
-        lat: Long,
-        lng: Long
+        latitude: Double,
+        longitude: Double
     ): Single<List<ApiRestaurant>> {
-        return doorDashService.getRestaurantFromCoordinates(lat, lng)
+        return doorDashService.getRestaurantFromCoordinates(latitude, longitude)
     }
 
     override fun getRestaurantFromId(id: Long): Single<ApiRestaurant> {
