@@ -37,6 +37,8 @@ class RestaurantAdapter(
                 restaurantItemStatus.text = restaurant.status
                 Glide.with(itemView.context)
                     .load(restaurant.imageUrl)
+                    .fitCenter()
+                    .error(R.drawable.ic_android_black_24dp)
                     .into(restaurantItemImage)
             }
         }

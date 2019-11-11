@@ -1,16 +1,13 @@
 package com.jmoney.discover.di
 
 import android.app.Application
-import com.jmoney.doordashapi.BuildConfig
-import com.jmoney.doordashapi.DoorDashService
+import com.jmoney.doordashapi.DoorDashApi
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
@@ -37,27 +34,28 @@ class NetworkModule {
     }
 
     @Provides
+    fun provideDoorDashApiBuilder(
+        retrofitBuilder: Retrofit.Builder
+    ): DoorDashApi.Builder {
+        return DoorDashApi.Builder(retrofitBuilder)
+    }
+
+    @Provides
     @Singleton
-    fun provideRetrofit(
+    fun provideDoorDashApi(
+        doorDashApiBuilder: DoorDashApi.Builder,
         okHttpClient: OkHttpClient,
         moshi: Moshi
-    ): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl(BuildConfig.BASE_URL)
-            .addConverterFactory(MoshiConverterFactory.create(moshi))
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .client(okHttpClient)
+    ) : DoorDashApi {
+        return doorDashApiBuilder
+            .moshi(moshi)
+            .okHttpClient(okHttpClient)
             .build()
     }
 
     @Provides
     fun provideMoshi(): Moshi {
         return Moshi.Builder().build()
-    }
-
-    @Provides
-    fun provideDoorDashService(restAdapter: Retrofit) : DoorDashService {
-        return restAdapter.create(DoorDashService::class.java)
     }
 
     @Provides

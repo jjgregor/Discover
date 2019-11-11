@@ -5,6 +5,8 @@ import com.jmoney.data.repository.RestaurantDataRepository
 import com.jmoney.discover.common.AndroidSchedulers
 import com.jmoney.discover.interfaces.Schedulers
 import com.jmoney.domain.repository.RestaurantRepository
+import com.jmoney.doordashapi.DoorDashApi
+import com.jmoney.doordashapi.DoorDashService
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -18,6 +20,9 @@ class AppModule(private val application: Application) {
 
         @Binds
         fun bindRestaurantRepository(restaurantDataRepository: RestaurantDataRepository): RestaurantRepository
+
+        @Binds
+        fun bindDoorDashApi(doorDashApi: DoorDashApi): DoorDashService
     }
 
     @Provides

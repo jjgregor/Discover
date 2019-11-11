@@ -61,7 +61,7 @@ ext.libs = [
 		'reflect' : "org.jetbrains.kotlin:kotlin-reflect:$versions.kotlin"
 	],
     'moshiAdapter'              : "com.squareup.moshi:moshi:$versions.moshi",
-    'moshiConverterFactory'     : "com.squareup.retrofit2:converter-moshi:$versions.moshi",
+    'moshiConverterFactory'     : "com.squareup.retrofit2:converter-moshi:$versions.retrofit",
     'moshi'                     : "com.squareup.moshi:moshi-adapters:$versions.moshi",
     'okhttp'                    : "com.squareup.okhttp3:okhttp:$versions.okhttp",
 	'okhttpLogging' 			: "com.squareup.okhttp3:logging-interceptor:$versions.okhttp",

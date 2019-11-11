@@ -10,7 +10,7 @@ class RestaurantAdapter @Inject constructor() {
 
     operator fun invoke(apiRestaurant: ApiRestaurant) : Restaurant {
         return Restaurant(
-            id = checkNotNull(apiRestaurant.id) { "ID must not be null" },
+            id = checkNotNull(apiRestaurant.restaurantId) { "ID must not be null" },
             name = checkNotNull(apiRestaurant.name) { "Name must not be null" },
             description = checkNotNull(apiRestaurant.description) { "Description must not be null" },
             imageUrl = apiRestaurant.imageUrl ?: RANDOM_DOGGO,

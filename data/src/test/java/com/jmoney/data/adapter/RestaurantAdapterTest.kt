@@ -20,7 +20,7 @@ class RestaurantAdapterTest {
     fun givenApiRestaurant_shouldReturnRestaurant() {
         // Given
         val apiRestaurant = ApiRestaurant(
-            id = ID,
+            restaurantId = ID,
             name = NAME,
             description = DESCRIPTION,
             imageUrl = IMAGE_URL,
@@ -61,7 +61,7 @@ class RestaurantAdapterTest {
     fun givenApiRestaurant_isMissingName_shouldReturnRestaurant() {
         // Given
         val apiRestaurant = ApiRestaurant(
-            id = ID,
+            restaurantId = ID,
             description = DESCRIPTION,
             imageUrl = IMAGE_URL,
             status = STATUS
@@ -77,7 +77,7 @@ class RestaurantAdapterTest {
     fun givenApiRestaurant_isMissingDescription_shouldReturnRestaurant() {
         // Given
         val apiRestaurant = ApiRestaurant(
-            id = ID,
+            restaurantId = ID,
             name = NAME,
             imageUrl = IMAGE_URL,
             status = STATUS
@@ -93,7 +93,7 @@ class RestaurantAdapterTest {
     fun givenApiRestaurant_isMissingImageUrl_shouldReturnRestaurant() {
         // Given
         val apiRestaurant = ApiRestaurant(
-            id = ID,
+            restaurantId = ID,
             name = NAME,
             description = DESCRIPTION,
             status = STATUS
@@ -118,7 +118,7 @@ class RestaurantAdapterTest {
     fun givenApiRestaurant_isMissingStatus_shouldReturnRestaurant() {
         // Given
         val apiRestaurant = ApiRestaurant(
-            id = ID,
+            restaurantId = ID,
             name = NAME,
             description = DESCRIPTION,
             imageUrl = IMAGE_URL

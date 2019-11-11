@@ -3,17 +3,17 @@ package com.jmoney.data.repository
 import com.jmoney.data.adapter.RestaurantAdapter
 import com.jmoney.domain.datamodel.Restaurant
 import com.jmoney.domain.repository.RestaurantRepository
-import com.jmoney.doordashapi.DoorDashApi
+import com.jmoney.doordashapi.DoorDashService
 import io.reactivex.Single
 import javax.inject.Inject
 
 class RestaurantDataRepository @Inject constructor(
-    private val doorDashApi: DoorDashApi,
+    private val doorDashService: DoorDashService,
     private val restaurantAdapter: RestaurantAdapter
 ) : RestaurantRepository {
 
     override fun getRestaurant(id: Long) : Single<Restaurant> {
-        return doorDashApi.getRestaurantFromId(id).map { restaurantAdapter(it) }
+        return doorDashService.getRestaurantFromId(id).map { restaurantAdapter(it) }
     }
 
     override fun getRestaurants(
@@ -22,7 +22,7 @@ class RestaurantDataRepository @Inject constructor(
         limit: Int,
         offset: Int
     ): Single<List<Restaurant>> {
-        return doorDashApi.getRestaurantFromCoordinates(
+        return doorDashService.getRestaurantFromCoordinates(
             latitude = latitude,
             longitude = longitude,
             limit = limit,
