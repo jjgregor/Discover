@@ -64,8 +64,9 @@ dependencies {
     kapt libs.dagger.androidProcessor
     kapt libs.moshiConverterFactory
 
-    testImplementation testLibs.junit
+    testImplementation testLibs.archTesting
     testImplementation testLibs.assertJ
+    testImplementation testLibs.junit
     testImplementation testLibs.mockitoKotlin
 
     androidTestImplementation androidTestLibs.androidTestRunner

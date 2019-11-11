@@ -55,8 +55,17 @@ class RestaurantListViewModel @Inject constructor(
             ).addTo(compositeDisposable)
     }
 
+    fun shouldDownLoadNextPage(totalCount: Int, firstVisible: Int, visibleCount: Int) {
+        if (!isDownloadingNextPage && visibleCount + firstVisible >= totalCount) {
+            isDownloadingNextPage = true
+            _state.postValue(RestaurantListState.Loading)
+            getRestaurantsFromCoordinates()
+        }
+    }
+
     private fun onGetRestaurantsSuccess(restaurants: List<Restaurant>) {
         pageOffset += 1
+        isDownloadingNextPage = false
         _state.postValue(RestaurantListState.Restaurants(restaurants))
     }
 
@@ -64,12 +73,4 @@ class RestaurantListViewModel @Inject constructor(
         _state.postValue(RestaurantListState.Error)
         Timber.e(throwable, "Error getting restaurants")
     }
-
-    fun shouldDownLoadNextPage(totalCount: Int, firstVisible: Int, visibleCount: Int) {
-        if (!isDownloadingNextPage && visibleCount + firstVisible >= totalCount) {
-            _state.postValue(RestaurantListState.Loading)
-            getRestaurantsFromCoordinates()
-        }
-    }
-
 }

@@ -82,9 +82,10 @@ ext.projectLibs = [
 ]
 
 ext.testLibs = [
-	'assertJ'		: 'org.assertj:assertj-core:3.14.0',
-	'junit'			: 'junit:junit:4.12',
-	'mockitoKotlin'  : "com.nhaarman.mockitokotlin2:mockito-kotlin:$versions.mockitoKotlin"
+	'assertJ'		 : 'org.assertj:assertj-core:3.14.0',
+	'junit'			 : 'junit:junit:4.12',
+	'mockitoKotlin'  : "com.nhaarman.mockitokotlin2:mockito-kotlin:$versions.mockitoKotlin",
+	'archTesting' 	 : "androidx.arch.core:core-testing:$versions.lifecycle"
 ]
 
 ext.androidTestLibs = [
