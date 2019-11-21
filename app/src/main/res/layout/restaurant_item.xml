@@ -60,6 +60,16 @@
             app:layout_constraintTop_toBottomOf="@+id/restaurant_item_title"
             tools:text="42 mins" />
 
+        <ImageView
+            android:id="@+id/restaurant_item_liked_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/liked_margin"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/restaurant_item_title"
+            android:src="@drawable/ic_unliked"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

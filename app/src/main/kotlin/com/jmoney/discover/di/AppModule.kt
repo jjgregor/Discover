@@ -1,9 +1,13 @@
 package com.jmoney.discover.di
 
 import android.app.Application
+import android.content.SharedPreferences
+import android.preference.PreferenceManager
+import com.jmoney.data.repository.LikedRestaurantsDataRepository
 import com.jmoney.data.repository.RestaurantDataRepository
 import com.jmoney.discover.common.AndroidSchedulers
 import com.jmoney.discover.interfaces.Schedulers
+import com.jmoney.domain.repository.LikedRestaurantsRepository
 import com.jmoney.domain.repository.RestaurantRepository
 import com.jmoney.doordashapi.DoorDashApi
 import com.jmoney.doordashapi.DoorDashService
@@ -23,11 +27,21 @@ class AppModule(private val application: Application) {
 
         @Binds
         fun bindDoorDashApi(doorDashApi: DoorDashApi): DoorDashService
+
+        @Binds
+        fun bindLikedRestaurantsRepository(
+            likedRestaurantsDataRepository: LikedRestaurantsDataRepository
+        ) : LikedRestaurantsRepository
     }
 
     @Provides
     fun provideSchedulers(): Schedulers {
         return AndroidSchedulers
+    }
+
+    @Provides
+    fun provideSharedPreferences() : SharedPreferences {
+        return PreferenceManager.getDefaultSharedPreferences(application)
     }
 
     @Provides

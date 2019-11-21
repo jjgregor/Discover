@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.jmoney.discover.datamodel.RestaurantListState
 import com.jmoney.discover.interfaces.Schedulers
 import com.jmoney.domain.datamodel.Restaurant
+import com.jmoney.domain.repository.LikedRestaurantsRepository
 import com.jmoney.domain.repository.RestaurantRepository
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
@@ -19,6 +20,7 @@ private const val DEFAULT_LONGITUDE = -122.139956
 
 class RestaurantListViewModel @Inject constructor(
     private val restaurantRepository: RestaurantRepository,
+    private val likedRestaurantRepository: LikedRestaurantsRepository,
     private val schedulers: Schedulers
 ) : ViewModel() {
 
@@ -72,5 +74,9 @@ class RestaurantListViewModel @Inject constructor(
     private fun onGetRestaurantsError(throwable: Throwable) {
         _state.postValue(RestaurantListState.Error)
         Timber.e(throwable, "Error getting restaurants")
+    }
+
+    fun setRestaurantLiked(restaurantId: Long) {
+        likedRestaurantRepository.setLikedRestaurant(restaurantId)
     }
 }

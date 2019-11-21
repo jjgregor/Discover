@@ -26,7 +26,7 @@ class RestaurantListFragment : Fragment() {
 
     private lateinit var viewModel: RestaurantListViewModel
     private lateinit var binding: FragmentRestaurantListBinding
-    private val recyclerViewAdapter = RestaurantAdapter()
+    private lateinit var recyclerViewAdapter: RestaurantAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +49,11 @@ class RestaurantListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val layoutManager = LinearLayoutManager(context)
+        recyclerViewAdapter = RestaurantAdapter(
+            onItemClick = { restaurantId ->
+                viewModel.setRestaurantLiked(restaurantId)
+            }
+        )
 
         with(binding) {
             fragmentRestaurantListRefresh.setOnRefreshListener { viewModel.getRestaurantsFromCoordinates() }
