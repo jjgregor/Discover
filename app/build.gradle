@@ -39,6 +39,7 @@ dependencies {
     implementation libs.androidx.appCompat
     implementation libs.androidx.constraintLayout
     implementation libs.androidx.core.ktx
+    implementation libs.androidx.core.preferences
     implementation libs.androidx.lifecycle.ext
     implementation libs.androidx.navigation.fragmentKtx
     implementation libs.androidx.navigation.uiKtx

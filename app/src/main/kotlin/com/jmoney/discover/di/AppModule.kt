@@ -2,7 +2,7 @@ package com.jmoney.discover.di
 
 import android.app.Application
 import android.content.SharedPreferences
-import android.preference.PreferenceManager
+import androidx.preference.PreferenceManager
 import com.jmoney.data.repository.LikedRestaurantsDataRepository
 import com.jmoney.data.repository.RestaurantDataRepository
 import com.jmoney.discover.common.AndroidSchedulers

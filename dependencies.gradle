@@ -7,6 +7,7 @@ ext.versions = [
     'glide'             : '4.9.0',
     'javaXAnnotation'   : '1.0',
     'kotlin'            : '1.3.41',
+    'ktx'            	: '1.1.0',
     'lifecycle'         : '2.1.0',
     'minSdk'            : 26,
     'mockitoKotlin'      : '2.0.0',
@@ -29,8 +30,9 @@ ext.libs = [
 		appCompat		 : "androidx.appcompat:appcompat:1.0.2",
 		constraintLayout : "androidx.constraintlayout:constraintlayout:1.1.3",
 	    core 		: [
-	        	ktx      : "androidx.core:core-ktx:1.0.2",
-				testing  : "androidx.arch.core:core-testing:2.0.0"
+	        	ktx      	: "androidx.core:core-ktx:$versions.ktx",
+				preferences : "androidx.preference:preference-ktx:$versions.ktx",
+				testing  	: "androidx.arch.core:core-testing:2.0.0"
 	    ],
 		lifecycle  	: [
 			compiler	 : "androidx.lifecycle:lifecycle-compiler:$versions.lifecycle",
