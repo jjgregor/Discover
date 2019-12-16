@@ -4,6 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.jmoney.discover.common.TestSchedulers
 import com.jmoney.discover.datamodel.RestaurantListState
+import com.jmoney.domain.repository.LikedRestaurantsRepository
 import com.jmoney.domain.repository.RestaurantRepository
 import com.nhaarman.mockitokotlin2.*
 import io.reactivex.Single
@@ -18,9 +19,11 @@ class RestaurantListViewModelTest {
 
     private val stateObserver = mock<Observer<RestaurantListState>>()
     private val restaurantRepository = mock<RestaurantRepository>()
+    private val likedRestaurantsRepository = mock<LikedRestaurantsRepository>()
     private val schedulers = TestSchedulers()
     private val viewModel = RestaurantListViewModel(
         restaurantRepository = restaurantRepository,
+        likedRestaurantsRepository = likedRestaurantsRepository,
         schedulers = schedulers
     )
 

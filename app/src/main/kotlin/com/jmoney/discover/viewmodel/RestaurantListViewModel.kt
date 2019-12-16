@@ -20,7 +20,7 @@ private const val DEFAULT_LONGITUDE = -122.139956
 
 class RestaurantListViewModel @Inject constructor(
     private val restaurantRepository: RestaurantRepository,
-    private val likedRestaurantRepository: LikedRestaurantsRepository,
+    private val likedRestaurantsRepository: LikedRestaurantsRepository,
     private val schedulers: Schedulers
 ) : ViewModel() {
 
@@ -77,6 +77,6 @@ class RestaurantListViewModel @Inject constructor(
     }
 
     fun setRestaurantLiked(restaurantId: Long) {
-        likedRestaurantRepository.setLikedRestaurant(restaurantId)
+        likedRestaurantsRepository.setLikedRestaurant(restaurantId)
     }
 }
