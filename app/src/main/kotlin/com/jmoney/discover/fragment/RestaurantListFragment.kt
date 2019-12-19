@@ -34,7 +34,8 @@ class RestaurantListFragment : Fragment() {
             .provideAppComponent()
             .inject(this)
 
-        viewModel = ViewModelProviders.of(this, viewModelFactory)[RestaurantListViewModel::class.java]
+        viewModel =
+            ViewModelProviders.of(this, viewModelFactory)[RestaurantListViewModel::class.java]
     }
 
     override fun onCreateView(
@@ -42,7 +43,12 @@ class RestaurantListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_restaurant_list, container, false)
+        binding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_restaurant_list,
+            container,
+            false
+        )
         return binding.root
     }
 
@@ -90,19 +96,20 @@ class RestaurantListFragment : Fragment() {
             if (fragmentRestaurantListRecycler.visibility != View.VISIBLE) {
                 fragmentRestaurantListRecycler.visibility = View.VISIBLE
             }
-            fragmentRestaurantListRefresh.isRefreshing = false
-            fragmentRestaurantListEmpty.visibility = View.GONE
+            if (fragmentRestaurantListEmpty.visibility != View.GONE) {
+                fragmentRestaurantListEmpty.visibility = View.GONE
+            }
+                fragmentRestaurantListRefresh.isRefreshing = false
 
-            recyclerViewAdapter.restaurants.addAll(state.restaurant)
+            recyclerViewAdapter.apply {
+                restaurants.addAll(state.restaurant)
+                notifyDataSetChanged()
+            }
         }
     }
 
     private fun setLoadingState() {
-        with(binding) {
-            fragmentRestaurantListRecycler.visibility = View.GONE
-            fragmentRestaurantListRefresh.isRefreshing = true
-            fragmentRestaurantListEmpty.visibility = View.GONE
-        }
+        binding.fragmentRestaurantListRefresh.isRefreshing = true
     }
 
     private fun setErrorState() {
