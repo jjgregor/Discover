@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.jmoney.discover.R
@@ -24,7 +24,7 @@ class RestaurantListFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private lateinit var viewModel: RestaurantListViewModel
+    private val viewModel by viewModels<RestaurantListViewModel> { viewModelFactory }
     private lateinit var binding: FragmentRestaurantListBinding
     private lateinit var recyclerViewAdapter: RestaurantAdapter
 
@@ -33,9 +33,6 @@ class RestaurantListFragment : Fragment() {
         (requireContext().applicationContext as AppComponentProvider)
             .provideAppComponent()
             .inject(this)
-
-        viewModel =
-            ViewModelProviders.of(this, viewModelFactory)[RestaurantListViewModel::class.java]
     }
 
     override fun onCreateView(
@@ -99,7 +96,9 @@ class RestaurantListFragment : Fragment() {
             if (fragmentRestaurantListEmpty.visibility != View.GONE) {
                 fragmentRestaurantListEmpty.visibility = View.GONE
             }
+            if (fragmentRestaurantListRefresh.isRefreshing) {
                 fragmentRestaurantListRefresh.isRefreshing = false
+            }
 
             recyclerViewAdapter.apply {
                 restaurants.addAll(state.restaurant)
