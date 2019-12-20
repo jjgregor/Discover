@@ -1,7 +1,10 @@
 package com.jmoney.data.adapter
 
 import com.jmoney.domain.datamodel.Restaurant
+import com.jmoney.domain.repository.LikedRestaurantsRepository
 import com.jmoney.doordashapi.ApiRestaurant
+import com.nhaarman.mockitokotlin2.given
+import com.nhaarman.mockitokotlin2.mock
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatExceptionOfType
 import org.junit.Test
@@ -11,13 +14,17 @@ private const val NAME = "name"
 private const val DESCRIPTION = "description"
 private const val IMAGE_URL = "image_url"
 private const val STATUS = "status"
+private const val RANDOM_DOGGO = "https://dog.ceo/api/breeds/image/random"
 
 class RestaurantAdapterTest {
 
-    private val adapter = RestaurantAdapter()
+    private val likedRestaurantsRepository = mock<LikedRestaurantsRepository>()
+    private val adapter = RestaurantAdapter(
+        likedRestaurantsRepository = likedRestaurantsRepository
+    )
 
     @Test
-    fun givenApiRestaurant_shouldReturnRestaurant() {
+    fun givenApiRestaurant_isLiked_shouldReturnRestaurant() {
         // Given
         val apiRestaurant = ApiRestaurant(
             restaurantId = ID,
@@ -26,6 +33,7 @@ class RestaurantAdapterTest {
             imageUrl = IMAGE_URL,
             status = STATUS
         )
+        given(likedRestaurantsRepository.getIsRestaurantLiked(ID)).willReturn(true)
 
         // When
         val result = adapter(apiRestaurant)
@@ -36,7 +44,35 @@ class RestaurantAdapterTest {
             name = NAME,
             description = DESCRIPTION,
             imageUrl = IMAGE_URL,
+            status = STATUS,
+            isLiked = true
+        )
+        assertThat(expected).isEqualToComparingFieldByField(result)
+    }
+
+    @Test
+    fun givenApiRestaurant_isNotLiked_shouldReturnRestaurant() {
+        // Given
+        val apiRestaurant = ApiRestaurant(
+            restaurantId = ID,
+            name = NAME,
+            description = DESCRIPTION,
+            imageUrl = IMAGE_URL,
             status = STATUS
+        )
+        given(likedRestaurantsRepository.getIsRestaurantLiked(ID)).willReturn(false)
+
+        // When
+        val result = adapter(apiRestaurant)
+
+        // Then
+        val expected = Restaurant(
+            id = ID,
+            name = NAME,
+            description = DESCRIPTION,
+            imageUrl = IMAGE_URL,
+            status = STATUS,
+            isLiked = false
         )
         assertThat(expected).isEqualToComparingFieldByField(result)
     }
@@ -98,6 +134,7 @@ class RestaurantAdapterTest {
             description = DESCRIPTION,
             status = STATUS
         )
+        given(likedRestaurantsRepository.getIsRestaurantLiked(ID)).willReturn(true)
 
         // When
         val result = adapter(apiRestaurant)
@@ -107,8 +144,9 @@ class RestaurantAdapterTest {
             id = ID,
             name = NAME,
             description = DESCRIPTION,
-            imageUrl = "",
-            status = STATUS
+            imageUrl = RANDOM_DOGGO,
+            status = STATUS,
+            isLiked = true
         )
         assertThat(expected).isEqualToComparingFieldByField(result)
 
