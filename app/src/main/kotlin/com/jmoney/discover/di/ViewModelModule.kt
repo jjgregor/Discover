@@ -2,6 +2,8 @@ package com.jmoney.discover.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.jmoney.discover.viewmodel.LoginViewModel
+import com.jmoney.discover.viewmodel.MainActivityViewModel
 import com.jmoney.discover.viewmodel.RestaurantListViewModel
 import com.jmoney.discover.viewmodel.ViewModelProviderFactory
 import dagger.Binds
@@ -22,6 +24,16 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(RestaurantListViewModel::class)
     internal abstract fun bindRestaurantListViewModel(viewModel: RestaurantListViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(LoginViewModel::class)
+    internal abstract fun bindLoginViewModel(viewModel: LoginViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(MainActivityViewModel::class)
+    internal abstract fun bindMainActivityViewModel(viewModel: MainActivityViewModel): ViewModel
 }
 
 @Target(AnnotationTarget.FUNCTION)

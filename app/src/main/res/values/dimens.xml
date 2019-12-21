@@ -6,4 +6,5 @@
     <dimen name="restaurant_image_width">100dp</dimen>
     <dimen name="restaurant_image_height">80dp</dimen>
     <dimen name="liked_margin">8dp</dimen>
+    <dimen name="edit_text_side_margin">32dp</dimen>
 </resources>

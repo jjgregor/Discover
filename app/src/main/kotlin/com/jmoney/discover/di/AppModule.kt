@@ -5,10 +5,12 @@ import android.content.SharedPreferences
 import androidx.preference.PreferenceManager
 import com.jmoney.data.repository.LikedRestaurantsDataRepository
 import com.jmoney.data.repository.RestaurantDataRepository
+import com.jmoney.data.repository.TokenDataRepository
 import com.jmoney.discover.common.AndroidSchedulers
 import com.jmoney.discover.interfaces.Schedulers
 import com.jmoney.domain.repository.LikedRestaurantsRepository
 import com.jmoney.domain.repository.RestaurantRepository
+import com.jmoney.domain.repository.TokenRepository
 import com.jmoney.doordashapi.DoorDashApi
 import com.jmoney.doordashapi.DoorDashService
 import dagger.Binds
@@ -16,7 +18,7 @@ import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
-@Module (includes = [AppModule.Declarations::class])
+@Module(includes = [AppModule.Declarations::class])
 class AppModule(private val application: Application) {
 
     @Module
@@ -31,7 +33,12 @@ class AppModule(private val application: Application) {
         @Binds
         fun bindLikedRestaurantsRepository(
             likedRestaurantsDataRepository: LikedRestaurantsDataRepository
-        ) : LikedRestaurantsRepository
+        ): LikedRestaurantsRepository
+
+        @Binds
+        fun bindTokenRepository(
+            tokenDataRepository: TokenDataRepository
+        ): TokenRepository
     }
 
     @Provides
@@ -40,7 +47,7 @@ class AppModule(private val application: Application) {
     }
 
     @Provides
-    fun provideSharedPreferences() : SharedPreferences {
+    fun provideSharedPreferences(): SharedPreferences {
         return PreferenceManager.getDefaultSharedPreferences(application)
     }
 

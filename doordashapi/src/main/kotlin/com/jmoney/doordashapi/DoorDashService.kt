@@ -1,7 +1,9 @@
 package com.jmoney.doordashapi
 
 import io.reactivex.Single
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -21,4 +23,8 @@ interface DoorDashService {
         @Path("restaurant_id") id: Long
     ): Single<ApiRestaurant>
 
+    @POST("/v2/auth/token/")
+    fun postAuthToken(
+        @Body tokenRequest: TokenRequest
+    ): Single<TokenResponse>
 }

@@ -61,4 +61,8 @@ class DoorDashApi @Inject constructor(
     override fun getRestaurantFromId(id: Long): Single<ApiRestaurant> {
         return doorDashService.getRestaurantFromId(id)
     }
+
+    override fun postAuthToken(tokenRequest: TokenRequest): Single<TokenResponse> {
+        return doorDashService.postAuthToken(tokenRequest)
+    }
 }
